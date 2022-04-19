@@ -1,24 +1,39 @@
-table {
-    margin: 20px;
+body {
+    background: rgb(250, 231, 127);
     align-items: center;
-  }
-  
-  .light-cell {
+    margin: 90px;
+}
+
+
+table {
+    margin: auto;
+    top: 90px;
+    background: white;
+    border: 15px groove burlywood;
+}
+
+.light-cell {
     background: rgb(211, 210, 210);
-    width: 45px;
-    height: 45px;
-  }
-  
-  .dark-cell {
-    background: rgb(63, 63, 63);
-    width: 45px;
-    height: 45px;
-  }
-  
-  .selected {
+    width: 70px;
+    height: 70px;
+    align-items: center;
+}
+
+.dark-cell {
+    background: rgb(84, 34, 3);
+    width: 70px;
+    height: 70px;
+    align-items: center;
+}
+
+.selected {
     background: rgb(197, 197, 83);
-  }
-  
-  .possible-move {
+}
+
+.possible-move {
     background: rgb(221, 142, 46);
-  }
+}
+#chessboard{
+    border: none;
+}
+

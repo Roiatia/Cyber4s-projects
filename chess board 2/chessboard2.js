@@ -28,13 +28,13 @@ class Piece {
     } else if (this.type === ROOK) {
       relativeMoves = this.getRookRelativeMoves();
     } else if (this.type === KNIGHT) {
-
+      relativeMoves = this.getKnightRelativeMoves();
     } else if (this.type === BISHOP) {
-
+      relativeMoves = this.getBishopRelativeMoves();
     } else if (this.type === KING) {
-
+      relativeMoves = this.getKingRelativeMoves();
     } else if (this.type === QUEEN) {
-
+      relativeMoves = this.getQueenRelativeMoves();
     } else {
       console.log("Unknown type", type)
     }
@@ -62,6 +62,7 @@ class Piece {
   getPawnRelativeMoves() {
     return [[1, 0]];
   }
+  
 
   getRookRelativeMoves() {
     let result = [];
@@ -73,7 +74,49 @@ class Piece {
     }
     return result;
   }
-}
+  getKnightRelativeMoves() {
+    let result = [];
+    for (let i = 1; i< BOARD_SIZE; i++) {
+      result.push([i, 0]);
+      result.push([-i, 0]);
+      result.push([0, i]);
+      result.push([0, -i]);
+    }
+    return result;
+  }
+  getKingRelativeMoves() {
+    let result = [];
+    for (let i = 1; i< BOARD_SIZE; i++) {
+      result.push([i, 0]);
+      result.push([-i, 0]);
+      result.push([0, i]);
+      result.push([0, -i]);
+    }
+    return result;
+  }
+    getQueenhtRelativeMoves() {
+      let result = [];
+      for (let i = 1; i< BOARD_SIZE; i++) {
+        result.push([i, 0]);
+        result.push([-i, 0]);
+        result.push([0, i]);
+        result.push([0, -i]);
+      }
+      return result;
+    }
+    getBishopRelativeMoves() {
+      let result = [];
+      for (let i = 1; i< BOARD_SIZE; i++) {
+        result.push([i, 0]);
+        result.push([-i, 0]);
+        result.push([0, i]);
+        result.push([0, -i]);
+      }
+      return result;
+    }
+  }
+
+
 
 class BoardData {
   constructor(pieces) {
@@ -118,7 +161,7 @@ function addImage(cell, player, name) {
 function onCellClick(event, row, col) {
   console.log('row', row);
   console.log('col', col);
-  
+
   for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
       table.rows[i].cells[j].classList.remove('possible-move');
@@ -126,7 +169,7 @@ function onCellClick(event, row, col) {
   }
   const piece = boardData.getPiece(row, col);
   if (piece !== undefined) {
-    let possibleMoves = piece.getPossibleMoves();
+    let possibleMoves = boardDatapiece.getPossibleMoves();
     for (let possibleMove of possibleMoves) {
       const cell = table.rows[possibleMove[0]].cells[possibleMove[1]];
       cell.classList.add('possible-move');

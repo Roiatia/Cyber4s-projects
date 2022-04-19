@@ -1,31 +1,20 @@
-
 let chessboard = document.getElementById('chessboard');
 let space = 1;
 let selectedCell;
 
+
 for (let row = 0; row < 8; row++) {
   let rowEl = document.createElement('tr');
-  for (let cell = 0; cell < 8; cell++) {
+  for (let cell = 0; cell < 8; cell++) { 
     let cellEl = document.createElement('td');
-    cellEl.dataset.position = space;
+    cellEl.dataset.position = space; 
     rowEl.appendChild(cellEl);
-    space++;
+    space++; 
   }
   chessboard.appendChild(rowEl);
-  cell.addEventListner('click', onCellclick);
-
 }
 
-function onCellClick(e) {
-  console.log(e.currentTarget);
-  if (selectedCell !== undefined) {
-    selectedCell.classList.remove('selected');
-  }
-  selectedCell = e.currentTarget;
-  selectedCell.classList.add('selected');
-}
-
-let initialPieces = [
+const initialPieces = [
   { position: 1, color: 'black', type: 'rook' },
   { position: 2, color: 'black', type: 'knight' },
   { position: 3, color: 'black', type: 'bishop' },
@@ -60,18 +49,41 @@ let initialPieces = [
   { position: 64, color: 'white', type: 'rook' },
 ];
 
-function setPieceData(el, color, type) {
-  el.classname = '';
-  el.classList.add(color);
-  el.classList.add(type);
+function setPieceData (el, color, type) {
+  el.classname = ''; 
+  el.classList.add(color); 
+  el.classList.add(type); 
 }
 
-function resetBoard() {
-  initialPieces.forEach(function (piece) {
+function resetBoard () {
+  initialPieces.forEach(function(piece) {
     let pieceEl = document.querySelector('td[data-position="' + piece.position + '"]');
     setPieceData(pieceEl, piece.color, piece.type);
   });
 };
 
-resetBoard();
+function onCellClick(event, rowEl, cellEl) {
+  console.log('row', rowEl);
+  console.log('cell', cellEl);
 
+  if (selectedCell !== undefined) {
+    selectedCell.classList.remove('selected');
+  }
+
+  selectedCell = event.currentTarget;
+  selectedCell.classList.add('selected');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+resetBoard();
