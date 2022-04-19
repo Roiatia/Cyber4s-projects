@@ -1,0 +1,63 @@
+body {
+    background: cyan;
+margin-top: 150px;
+margin-right: 50px;
+margin-left: 50px;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+   margin-top: 60px;
+
+}
+
+.damka {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.damka th {
+    padding: 10px;
+
+}
+
+.damka td {
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+.light {
+    background: #eee;
+}
+
+.dark {
+    background: #000;
+}
+
+.damka tr {
+    font-family: 'Times New Roman';
+    font-size: 21px;
+}
+
+h1 {
+    font-size: 70px;
+    font-family: Arial;
+    position: fixed;
+    left: 770px;
+    top: 0px;
+    color: black;
+    text-decoration: underline;
+    align-items: center
+}
+
+p {
+    font-size: 9px;
+    font-family: Arial;
+    color: black;
+    position: relative;
+    left: 80px;
+    top: 80px;
+ 
+}
