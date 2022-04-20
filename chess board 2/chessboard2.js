@@ -23,58 +23,102 @@ class Piece {
   }
 
 
-getPossibleMoves() {
-  let relativeMoves;
-  if (this.type === PAWN) {
-    relativeMoves = this.getPawnRelativeMoves();
-  } else if (this.type === ROOK) {
-    relativeMoves = this.getRookRelativeMoves();
-  } else if (this.type === KNIGHT) {
-    relativeMoves = this.getKnightRelativeMoves();
-  } else if (this.type === BISHOP) {
-    relativeMoves = this.getBishopRelativeMoves();
-  } else if (this.type === KING) {
-    relativeMoves = this.getKingRelativeMoves();
-  } else if (this.type === QUEEN) {
-    relativeMoves = this.getQueenRelativeMoves();
-  } else {
-    console.log("Unknown type", type)
-  }
-  console.log('relativeMoves', relativeMoves);
+  getPossibleMoves() {
+    let relativeMoves;
+    if (this.type === PAWN) {
+      relativeMoves = this.getPawnRelativeMoves();
+    } else if (this.type === ROOK) {
+      relativeMoves = this.getRookRelativeMoves();
+    } else if (this.type === KNIGHT) {
+      relativeMoves = this.getKnightRelativeMoves();
+    } else if (this.type === BISHOP) {
+      relativeMoves = this.getBishopRelativeMoves();
+    } else if (this.type === KING) {
+      relativeMoves = this.getKingRelativeMoves();
+    } else if (this.type === QUEEN) {
+      relativeMoves = this.getQueenRelativeMoves();
+    } else {
+      console.log("Unknown type", type)
+    }
+    console.log('relativeMoves', relativeMoves);
 
-  let absoluteMoves = [];
-  for (let relativeMove of relativeMoves) {
-    const absoluteRow = this.row + relativeMove[0];
-    const absoluteCol = this.col + relativeMove[1];
-    absoluteMoves.push([absoluteRow, absoluteCol]);
+    let absoluteMoves = [];
+    for (let relativeMove of relativeMoves) {
+      const absoluteRow = this.row + relativeMove[0];
+      const absoluteCol = this.col + relativeMove[1];
+      absoluteMoves.push([absoluteRow, absoluteCol]);
+    }
+
+    let filteredMoves = [];
+    for (let absoluteMove of absoluteMoves) {
+      const absoluteRow = absoluteMove[0];
+      const absoluteCol = absoluteMove[1];
+      if (absoluteRow >= 0 && absoluteRow <= 7 && absoluteCol >= 0 && absoluteCol <= 7) {
+        filteredMoves.push(absoluteMove);
+      }
+    }
+    console.log('filteredMoves', filteredMoves);
+    return filteredMoves;
   }
 
-  let filteredMoves = [];
-  for (let absoluteMove of absoluteMoves) {
-    const absoluteRow = absoluteMove[0];
-    const absoluteCol = absoluteMove[1];
-    if (absoluteRow >= 0 && absoluteRow <= 7 && absoluteCol >= 0 && absoluteCol <= 7) {
-      filteredMoves.push(absoluteMove);
+  getPawnRelativeMoves() {
+    return [[1, 0]];
+  }
+
+  getRookRelativeMoves() {
+    let result = [];
+    for (let i = 1; i < BOARD_SIZE; i++) {
+      result.push([i, 0]);
+      result.push([-i, 0]);
+      result.push([0, i]);
+      result.push([0, -i]);
+    }
+    return result;
+  }
+  getKnightRelativeMoves() {
+    let result = [];
+
+    result.push([-2, 1]);
+    result.push([-1, 2]);
+    result.push([1, 2]);
+    result.push([2, 1]);
+    result.push([2, -1]);
+    result.push([1, -2]);
+    result.push([-1, -2]);
+    result.push([-2, -1]);
+
+    return result;
+  }
+
+  getBishopRelativeMoves() {
+    let result = [];
+    for (let i = 1; i < 8; i++) {
+      result.push([i, i]);
+      result.push([-i, i]);
+      result.push([i, -i]);
+      result.push([-i, -i]);
+    }
+    return result;
+  }
+
+  getKingRelativeMoves() {
+    let result = [];
+    for (let i = -1; i < 2; i++)
+      for (let j = -1; j < 2; j++)
+        if (!(i === 0 && j === 0))
+          result.push([i, j]);
+    return result;
+  }
+
+  getQueenRelativeMoves() {
+    let result = [];
+    for (let i = 1; i < 8; i++) {
+      result.push([i, i]);
+      result.push([-i, i]);
+      result.push([i, -i]);
+      result.push([-i, -i]);
     }
   }
-  console.log('filteredMoves', filteredMoves);
-  return filteredMoves;
-}
-
-getPawnRelativeMoves() {
-  return [[1, 0]];
-}
-
-getRookRelativeMoves() {
-  let result = [];
-  for (let i = 1; i < BOARD_SIZE; i++) {
-    result.push([i, 0]);
-    result.push([-i, 0]);
-    result.push([0, i]);
-    result.push([0, -i]);
-  }
-  return result;
-}
 }
 
 class BoardData {
@@ -165,14 +209,14 @@ function onCellClick(event, row, col) {
       table1.rows[i].cells[j].classList.remove('possible-move');
     }
   }
-  
-  
+
+
   for (let piece of pieces) {
     if (piece.row === row && piece.col === col) {
       console.log(piece);
       let possibleMoves = piece.getPossibleMoves();
       for (let possibleMove of possibleMoves)
-      table1.rows[possibleMove[0]].cells[possibleMove[1]].classList.add('possible-move');
+        table1.rows[possibleMove[0]].cells[possibleMove[1]].classList.add('possible-move');
     }
   }
 
@@ -181,7 +225,7 @@ function onCellClick(event, row, col) {
     selectedCell.classList.remove('selected');
   }
 
-  
+
   selectedCell = event.currentTarget;
   selectedCell.classList.add('selected');
 }
@@ -215,8 +259,8 @@ function chessBoard() {
       } else {
         cell.className = 'black-cell';
       }
-      cell.addEventListener('click', function (){
-        onCellClick(event,i,j)
+      cell.addEventListener('click', function () {
+        onCellClick(event, i, j)
       });
     }
   }
