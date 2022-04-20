@@ -18,8 +18,7 @@ table {
     height: 70px;
     align-items: center;
 }
-
-.dark-cell {
+.black-cell {
     background: rgb(84, 34, 3);
     width: 70px;
     height: 70px;

@@ -1,6 +1,6 @@
 const BOARD_SIZE = 8;
 const WHITE_PLAYER = 'white';
-const DARK_PLAYER = 'dark';
+const BLACK_PLAYER = 'black';
 
 
 const PAWN = 'pawn';
@@ -30,13 +30,13 @@ getPossibleMoves() {
   } else if (this.type === ROOK) {
     relativeMoves = this.getRookRelativeMoves();
   } else if (this.type === KNIGHT) {
-    // TODO: Get moves
+    relativeMoves = this.getKnightRelativeMoves();
   } else if (this.type === BISHOP) {
-    // TODO: Get moves
+    relativeMoves = this.getBishopRelativeMoves();
   } else if (this.type === KING) {
     relativeMoves = this.getKingRelativeMoves();
   } else if (this.type === QUEEN) {
-    // TODO: Get moves
+    relativeMoves = this.getQueenRelativeMoves();
   } else {
     console.log("Unknown type", type)
   }
@@ -89,11 +89,11 @@ class BoardData {
 function getInitialBoard() {
   let result = [];
   addPieces(result, 0, WHITE_PLAYER);
-  addPieces(result, 7, DARK_PLAYER);
+  addPieces(result, 7, BLACK_PLAYER);
 
   for (let i = 0; i < BOARD_SIZE; i++) {
     result.push(new Piece(1, i, PAWN, WHITE_PLAYER));
-    result.push(new Piece(6, i, PAWN, DARK_PLAYER));
+    result.push(new Piece(6, i, PAWN, BLACK_PLAYER));
   }
   return result;
 }
@@ -103,11 +103,11 @@ function getInitialPieces() {
   let result = [];
 
   addFirstRowPieces(result, 0, WHITE_PLAYER);
-  addFirstRowPieces(result, 7, DARK_PLAYER);
+  addFirstRowPieces(result, 7, BLACK_PLAYER);
 
   for (let i = 0; i < BOARD_SIZE; i++) {
     result.push(new Piece(1, i, PAWN, WHITE_PLAYER));
-    result.push(new Piece(6, i, PAWN, DARK_PLAYER));
+    result.push(new Piece(6, i, PAWN, BLACK_PLAYER));
   }
   return result;
 }
@@ -132,22 +132,22 @@ function getInitialBoard() {
   result.push(new Piece(1, 6, "pawn", WHITE_PLAYER))
   result.push(new Piece(1, 7, "pawn", WHITE_PLAYER))
 
-  result.push(new Piece(7, 0, "rook", DARK_PLAYER))
-  result.push(new Piece(7, 1, "knight", DARK_PLAYER))
-  result.push(new Piece(7, 2, "bishop", DARK_PLAYER))
-  result.push(new Piece(7, 3, "queen", DARK_PLAYER))
-  result.push(new Piece(7, 4, "king", DARK_PLAYER))
-  result.push(new Piece(7, 5, "bishop", DARK_PLAYER))
-  result.push(new Piece(7, 6, "knight", DARK_PLAYER))
-  result.push(new Piece(7, 7, "rook", DARK_PLAYER))
-  result.push(new Piece(6, 0, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 1, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 2, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 3, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 4, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 5, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 6, "pawn", DARK_PLAYER))
-  result.push(new Piece(6, 7, "pawn", DARK_PLAYER))
+  result.push(new Piece(7, 0, "rook", BLACK_PLAYER))
+  result.push(new Piece(7, 1, "knight", BLACK_PLAYER))
+  result.push(new Piece(7, 2, "bishop", BLACK_PLAYER))
+  result.push(new Piece(7, 3, "queen", BLACK_PLAYER))
+  result.push(new Piece(7, 4, "king", BLACK_PLAYER))
+  result.push(new Piece(7, 5, "bishop", BLACK_PLAYER))
+  result.push(new Piece(7, 6, "knight", BLACK_PLAYER))
+  result.push(new Piece(7, 7, "rook", BLACK_PLAYER))
+  result.push(new Piece(6, 0, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 1, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 2, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 3, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 4, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 5, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 6, "pawn", BLACK_PLAYER))
+  result.push(new Piece(6, 7, "pawn", BLACK_PLAYER))
   return result;
 }
 
@@ -213,7 +213,7 @@ function chessBoard() {
       if ((i + j) % 2 === 0) {
         cell.className = 'light-cell';
       } else {
-        cell.className = 'dark-cell';
+        cell.className = 'black-cell';
       }
       cell.addEventListener('click', function (){
         onCellClick(event,i,j)
