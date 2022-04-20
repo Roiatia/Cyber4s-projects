@@ -117,6 +117,7 @@ class Piece {
       result.push([-i, i]);
       result.push([i, -i]);
       result.push([-i, -i]);
+      return result;
     }
   }
 }
