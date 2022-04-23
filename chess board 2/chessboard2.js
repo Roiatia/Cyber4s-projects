@@ -63,6 +63,10 @@ class Piece {
 
   getPawnRelativeMoves() {
     return [[1, 0]];
+    if (this.type === BLACK_PLAYER){
+      result.push ([-1 , 0]);
+      return result;
+    }
   }
 
   getRookRelativeMoves() {
@@ -126,8 +130,13 @@ class BoardData {
   constructor(pieces) {
     this.pieces = pieces;
   }
-
   getPiece(row, col) {
+    for (const piece of this.pieces) {
+      if (piece.row === row && piece.col === col) {
+        return piece;
+      }
+    }
+    return undefined;
   }
 }
 
@@ -168,14 +177,6 @@ function getInitialBoard() {
   result.push(new Piece(0, 5, "bishop", WHITE_PLAYER))
   result.push(new Piece(0, 6, "knight", WHITE_PLAYER))
   result.push(new Piece(0, 7, "rook", WHITE_PLAYER))
-  result.push(new Piece(1, 0, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 1, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 2, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 3, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 4, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 5, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 6, "pawn", WHITE_PLAYER))
-  result.push(new Piece(1, 7, "pawn", WHITE_PLAYER))
 
   result.push(new Piece(7, 0, "rook", BLACK_PLAYER))
   result.push(new Piece(7, 1, "knight", BLACK_PLAYER))
@@ -185,14 +186,10 @@ function getInitialBoard() {
   result.push(new Piece(7, 5, "bishop", BLACK_PLAYER))
   result.push(new Piece(7, 6, "knight", BLACK_PLAYER))
   result.push(new Piece(7, 7, "rook", BLACK_PLAYER))
-  result.push(new Piece(6, 0, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 1, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 2, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 3, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 4, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 5, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 6, "pawn", BLACK_PLAYER))
-  result.push(new Piece(6, 7, "pawn", BLACK_PLAYER))
+  for (let i = 0; i <= 7; i++) {
+    result.push(new Piece(1, i, "pawn", WHITE_PLAYER));
+    result.push(new Piece(6, i, "pawn", BLACK_PLAYER));
+  }
   return result;
 }
 
