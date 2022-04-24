@@ -21,7 +21,7 @@ class Piece {
     this.player = player;
   }
 
-  getOpponent() {
+  getRival() {
     if (this.player === WHITE_PLAYER) {
       return BLACK_PLAYER;
     }
@@ -73,12 +73,12 @@ class Piece {
     }
 
     position = [this.row + direction, this.col + direction];
-    if (boardData.isPlayer(position[0], position[1], this.getOpponent())) {
+    if (boardData.isPlayer(position[0], position[1], this.getRival())) {
       result.push(position);
     }
 
     position = [this.row + direction, this.col - direction];
-    if (boardData.isPlayer(position[0], position[1], this.getOpponent())) {
+    if (boardData.isPlayer(position[0], position[1], this.getRival())) {
       result.push(position);
     }
 
@@ -105,9 +105,9 @@ class Piece {
       let col = this.col + directionCol * i;
       if (boardData.isEmpty(row, col)) {
         result.push([row, col]);
-      } else if (boardData.isPlayer(row, col, this.getOpponent())) {
+      } else if (boardData.isPlayer(row, col, this.getRival())) {
         result.push([row, col]);
-        console.log("opponent");
+        console.log("rival");
         return result;
       } else if (boardData.isPlayer(row, col, this.player)) {
         console.log("player");
