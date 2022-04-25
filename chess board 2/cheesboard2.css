@@ -13,7 +13,7 @@ table {
 }
 
 .light-cell {
-    background: rgb(211, 210, 210);
+    background: rgb(212, 86, 32);
     width: 70px;
     height: 70px;
     align-items: center;
@@ -36,3 +36,6 @@ table {
     border: none;
 }
 
+img{
+   align-content: center;
+}
