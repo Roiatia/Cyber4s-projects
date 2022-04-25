@@ -327,9 +327,3 @@ function createChessBoard(boardData) {
 }
 
 window.addEventListener('load', initGame);
-React
-
-
-
-
-
