@@ -219,6 +219,32 @@ function addImage(cell, player, name) {
   cell.appendChild(image);
 }
 
+function getInitialBoard() {
+  let result = [];
+  result.push(new Piece(0, 0, "rook", WHITE_PLAYER))
+  result.push(new Piece(0, 1, "knight", WHITE_PLAYER))
+  result.push(new Piece(0, 2, "bishop", WHITE_PLAYER))
+  result.push(new Piece(0, 3, "queen", WHITE_PLAYER))
+  result.push(new Piece(0, 4, "king", WHITE_PLAYER))
+  result.push(new Piece(0, 5, "bishop", WHITE_PLAYER))
+  result.push(new Piece(0, 6, "knight", WHITE_PLAYER))
+  result.push(new Piece(0, 7, "rook", WHITE_PLAYER))
+
+  result.push(new Piece(7, 0, "rook", BLACK_PLAYER))
+  result.push(new Piece(7, 1, "knight", BLACK_PLAYER))
+  result.push(new Piece(7, 2, "bishop", BLACK_PLAYER))
+  result.push(new Piece(7, 3, "queen", BLACK_PLAYER))
+  result.push(new Piece(7, 4, "king", BLACK_PLAYER))
+  result.push(new Piece(7, 5, "bishop", BLACK_PLAYER))
+  result.push(new Piece(7, 6, "knight", BLACK_PLAYER))
+  result.push(new Piece(7, 7, "rook", BLACK_PLAYER))
+  for (let i = 0; i <= 7; i++) {
+    result.push(new Piece(1, i, "pawn", WHITE_PLAYER));
+    result.push(new Piece(6, i, "pawn", BLACK_PLAYER));
+  }
+  return result;
+}
+
 function showMovesForPiece(row, col) {
     console.log('showMovesForPiece');
     for (let i = 0; i < BOARD_SIZE; i++) {
