@@ -1,13 +1,21 @@
 body {
     background: rgb(250, 231, 127);
     align-items: center;
-    margin: 90px;
+    margin: 35px;
+}
+
+h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 65px;
+    position: relative;
+    text-align: center;
+    bottom: 55px;
 }
 
 
 table {
     margin: auto;
-    top: 90px;
+    top: 60px;
     background: white;
     border: 25px groove burlywood;
 }
@@ -18,6 +26,7 @@ table {
     height: 70px;
     align-items: center;
 }
+
 .black-cell {
     background: rgb(84, 34, 3);
     width: 70px;
@@ -32,10 +41,16 @@ table {
 .possible-move {
     background: rgb(221, 142, 46);
 }
-#chessboard{
+
+#chessboard {
     border: none;
 }
 
-img{
-   align-content: center;
+img {
+    align-content: center;
+}
+
+p {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
 }
