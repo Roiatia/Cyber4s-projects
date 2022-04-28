@@ -46,6 +46,20 @@ table {
     border: none;
 }
 
+.winner-dialog {
+    font-family: 'Comfortaa', cursive;
+    font-size: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: yellow;
+    padding: 50px;
+    border-radius: 10px;
+    width: max-content;
+  }
+  
+
 img {
     align-items: center;
 }
@@ -54,3 +68,4 @@ p {
     font-family: 'Comfortaa', cursive;
     text-align: center;
 }
+
